@@ -4,6 +4,9 @@
   "description": "",
   "main": "main.js",
   "scripts": {
+    "dev": "concurrently -k \"npm run dev:renderer\" \"wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .\"",
+    "dev:renderer": "cd src/renderer && vite --host --port 5173",
+    "build": "cd src/renderer && npm run build",
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
@@ -12,6 +15,7 @@
   "author": "herbert",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "electron-squirrel-startup": "^1.0.1"
   },
   "devDependencies": {
@@ -23,6 +27,10 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.7.0",
     "@electron-forge/plugin-fuses": "^7.7.0",
     "@electron/fuses": "^1.8.0",
-    "electron": "35.0.3"
+    "@vitejs/plugin-react": "^4.5.0",
+    "concurrently": "^9.1.2",
+    "electron": "35.0.3",
+    "vite": "^6.3.5",
+    "wait-on": "^8.0.3"
   }
 }

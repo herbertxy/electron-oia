@@ -10,7 +10,14 @@ const createWindow = () => {
     }
   })
 
-  win.loadFile('index.html')
+  if (process.env.NODE_ENV === 'development') {
+    console.log('dev')
+    win.loadURL('http://localhost:5173'); // Vite 默认端口
+  } else {
+    console.log('prod')
+    win.loadFile(path.join(__dirname, 'dist/index.html'));
+  }
+  // win.loadFile('index.html')
 }
 
 app.whenReady().then(() => {
